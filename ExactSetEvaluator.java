@@ -21,6 +21,12 @@ public class ExactSetEvaluator {
         exact.add(normalized);
         return true;
     }
+    public boolean containsExact(String url) {
+        if (url == null || url.trim().isEmpty()) {
+            return false;
+        }
+        return exact.contains(UrlNormalizer.normalize(url));
+    }
     public int exactSize() {
         return exact.size();
     }
