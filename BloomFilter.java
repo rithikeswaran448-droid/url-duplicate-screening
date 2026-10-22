@@ -69,5 +69,23 @@ public int countSetBits() {
 	    public double occupancy() {
 	        return (double) countSetBits() / m;
 	    }
-	
+	public double theoreticalFpRate(int n) {
+	        return Math.pow(1 - Math.exp(-(double) k * n / m), k);
+	    }
+
+	    public int getM() {
+	        return m;
+	    }
+
+	    public int getK() {
+	        return k;
+	    }
+
+	    public int getInserted() {
+	        return inserted;
+	    }
+
+	    public long memoryBytes() {
+	        return bits.length * 8L;
+	    }
 }
