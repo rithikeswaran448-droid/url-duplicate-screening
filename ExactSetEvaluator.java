@@ -27,6 +27,21 @@ public class ExactSetEvaluator {
         }
         return exact.contains(UrlNormalizer.normalize(url));
     }
+    public int countFalsePositives(String[] unseenUrls) {
+        int count = 0;
+        for (String url : unseenUrls) {
+            if (!containsExact(url) && bloom.mightContain(url)) {
+                count++;
+            }
+        }
+        return count;
+    }
+    public double observedFpRate(String[] unseenUrls) {
+        if (unseenUrls == null || unseenUrls.length == 0) {
+            return 0.0;
+        }
+        return (double) countFalsePositives(unseenUrls) / unseenUrls.length;
+    }
     public int exactSize() {
         return exact.size();
     }
