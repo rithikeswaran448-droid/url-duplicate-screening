@@ -11,3 +11,10 @@ Web crawlers and search indexers process billions of URLs daily. Storing every u
 2.Exact Ground-Truth Layer (ExactSetEvaluator / HashSet): Unambiguous exact set used to detect duplicates, measure actual observed false positives, and estimate heap memory consumption.
 
 3.URL Normalizer (UrlNormalizer): Canonicalizes URLs prior to hashing and insertion to prevent false variations caused by protocol variations, query ordering, or trailing slashes.
+
+🧱 Architecture & Modules
+src/
+├── Main.java               # Execution harness, benchmark runner, and report generator
+├── BloomFilter.java        # Probabilistic bit array using optimal hash functions
+├── ExactSetEvaluator.java  # Exact ground-truth HashSet and benchmark comparison engine
+└── UrlNormalizer.java      # URL canonicalization and sanitization logic
