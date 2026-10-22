@@ -22,5 +22,25 @@ private final long[] bits;
 	        }
 	        return h;
 	    }
-  
+  private int position(String url, int i) {
+	        long h1 = fnv(url, 0xcbf29ce484222325L);
+	        long h2 = fnv(url, 0x84222325cbf29ce4L) | 1L;
+	        return (int) Math.floorMod(h1 + (long) i * h2, (long) m);
+	    }
+
+	    private void setBit(int p) {
+	        bits[p >> 6] |= (1L << (p & 63));
+	    }
+
+	    private boolean getBit(int p) {
+	        return (bits[p >> 6] & (1L << (p & 63))) != 0;
+	    }
+
+	    public void insert(String rawUrl) {
+	        String url = UrlNormalizer.normalize(rawUrl);
+	        for (int i = 0; i < k; i++) {
+	            setBit(position(url, i));
+	        }
+	        inserted++;
+	    }
 }
