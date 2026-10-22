@@ -58,5 +58,16 @@ private final long[] bits;
 	                ? "POSSIBLY PRESENT"
 	                : "DEFINITELY NOT PRESENT";
 	    }
+public int countSetBits() {
+	        int count = 0;
+	        for (long word : bits) {
+	            count += Long.bitCount(word);
+	        }
+	        return count;
+	    }
 
+	    public double occupancy() {
+	        return (double) countSetBits() / m;
+	    }
+	
 }
