@@ -43,4 +43,20 @@ private final long[] bits;
 	        }
 	        inserted++;
 	    }
+	public boolean mightContain(String rawUrl) {
+	        String url = UrlNormalizer.normalize(rawUrl);
+	        for (int i = 0; i < k; i++) {
+	            if (!getBit(position(url, i))) {
+	                return false;
+	            }
+	        }
+	        return true;
+	    }
+
+	    public String query(String url) {
+	        return mightContain(url)
+	                ? "POSSIBLY PRESENT"
+	                : "DEFINITELY NOT PRESENT";
+	    }
+
 }
