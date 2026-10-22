@@ -42,6 +42,13 @@ public class ExactSetEvaluator {
         }
         return (double) countFalsePositives(unseenUrls) / unseenUrls.length;
     }
+    public long estimatedExactSetBytes() {
+        long total = 0;
+        for (String s : exact) {
+            total += s.length() * 2L + 90;
+        }
+        return total;
+    }
     public int exactSize() {
         return exact.size();
     }
